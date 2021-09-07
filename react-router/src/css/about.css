@@ -1,0 +1,20 @@
+div.about label,
+div.about span {
+  display: inline-block;
+  width: 40%;
+  padding: 10px;
+  margin: 2px;
+  border-radius: 10px;
+}
+
+div.about label {
+  text-align: right;
+  background-color: beige;
+}
+div.about span {
+  text-align: left;
+  background-color: whitesmoke;
+}
+div.about ul {
+  list-style: none;
+}

@@ -1,0 +1,16 @@
+div.bbs_write {
+  width: 80%;
+  margin: 0 auto;
+}
+
+div.bbs_write label,
+div.bbs_write input {
+  display: inline-block;
+  padding: 8px;
+  margin: 5px;
+}
+
+div.bbs_write label {
+  text-align: right;
+  width: 30%;
+}
