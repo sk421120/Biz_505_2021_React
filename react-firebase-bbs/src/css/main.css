@@ -1,0 +1,21 @@
+table.bbs_list {
+  width: 80%;
+  margin: 5px auto;
+  border-collapse: collapse;
+}
+
+table.bbs_list th,
+table.bbs_list td {
+  padding: 0.5rem;
+}
+
+table.bbs_list thead tr:first-child {
+  background-color: rgb(128, 209, 128);
+}
+table.bbs_list tr:nth-of-type(even) {
+  background-color: lightgreen;
+}
+
+table.bbs_list tr:nth-of-type(odd) {
+  background-color: lightgreen;
+}

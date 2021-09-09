@@ -1,0 +1,20 @@
+nav.main_nav {
+  background-color: cadetblue;
+  color: white;
+}
+
+nav.main_nav ul {
+  display: flex;
+}
+
+nav.main_nav ul li {
+  list-style: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+nav.main_nav ul li:hover {
+  transition: 0.2s;
+  background-color: rgb(131, 202, 204);
+}
