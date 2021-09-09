@@ -14,9 +14,8 @@ function App() {
           <Header />
         </header>
         <MainNav />
-        <Route path="/" com />
-        <BBsMain />
-        <BBsWrite />
+        <Route path="/" component={BBsMain} exact />
+        <Route path="/write" component={BBsWrite} exact />
       </div>
     </Router>
   );
