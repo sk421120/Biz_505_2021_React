@@ -3,18 +3,48 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const { Mongoose } = require("mongoose");
+/*
+CROSS ORIGIN RESOURCE SHARE
+서로 다른 서버간에 데이터를 주고받을 때 보안문제로 인해 발생할 수 있는 ISSUE
 
-// config/mongoConfigSample.json에 Atlas USERID와 PASSWORD를 설정
-// 등록한 후 mongoConfig.json으로 변경한 후 사용
+XSS 공격
+*/
+const cors = require("cors");
+const mongoose = require("mongoose");
+
+// db가 작동되는 것을 모니터링을 하기 위한
+// event 핸들러를 등록
+const dbConn = mongoose.connection;
+dbConn.once("open", () => {
+  console.log("MongDB Open OK!!");
+});
+dbConn.on("error", () => {
+  console.error;
+});
+
+// config/mongoConfigSample.json에 Atlas USERID와 PASSWORD를 등록한 후
+// mongoConfig.json으로 변경한 후 실행하시오
 const mongoConfig = require("./config/mongoConfig.json");
 const mongoAtlas = `mongodb+srv://${mongoConfig.USERID}:${mongoConfig.PASSWORD}@cluster0.q2ose.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-Mongoose.connect(mongoAtlas);
+mongoose.connect(mongoAtlas);
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
+
+// CORS를 허용할 Origin List
+const whiteList = ["http://localhost:4000", "http://localhost:3000"];
+
+const corsOption = {
+  origin: (origin, callback) => {
+    const isWhiteList = whiteList.indexOf(origin) !== -1;
+    callback(null, isWhiteList);
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOption));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
