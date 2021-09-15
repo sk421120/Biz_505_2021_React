@@ -6,9 +6,11 @@ import moment from "moment";
 
 function BuckMain() {
   const [bucketList, setBuckList] = useState([]);
+  // db에 update할 state
+  const [saveBucket, setSaveBucket] = useState([]);
 
   const bucketFetch = useCallback(async () => {
-    const res = await fetch("http://localhost:3000/data");
+    const res = await fetch("http://localhost:5000/api/get");
     const bucket = await res.json();
     console.log(bucket);
     await setBuckList(bucket);
@@ -17,6 +19,7 @@ function BuckMain() {
   useEffect(bucketFetch, [bucketFetch]);
 
   const buck_insert = async (bucket_text) => {
+    // 저장할 데이터를 생성하고
     const bucket = {
       b_id: uuid(),
       b_start_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
@@ -26,6 +29,7 @@ function BuckMain() {
       b_end_check: false,
       b_cancel: false,
     };
+    // 화면에 보여질 리스트에 추가하기
     // 원래있던 bucketList에 새로운 bucket을 추가하기
     await setBuckList([...bucketList, bucket]);
 
@@ -36,10 +40,26 @@ function BuckMain() {
       },
       body: JSON.stringify(bucket),
     };
-    await fetch("http://localhost:3000/insert", fetch_option);
+    await fetch("http://localhost:5000/api/bucket", fetch_option);
     // await bucketFetch();
   };
 
+  const putBucket = async () => {
+    console.log(saveBucket);
+    const putFetchOption = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(saveBucket),
+    };
+    const result = await fetch(
+      "http://localhost:5000/api/bucket",
+      putFetchOption
+    );
+    console.log(result.json());
+  };
+  useEffect(putBucket, [saveBucket]);
   // 리스트에서 FLAG항목을 클릭하면 실행할 함수
   const flag_change = (id) => {
     const _bucketList = bucketList.map((bucket) => {
@@ -47,10 +67,10 @@ function BuckMain() {
        * 전달받은 id와 같은 항목의 flag를 1 증가시키기
        */
       if (bucket.b_id === id) {
-        return {
-          ...bucket,
-          b_flag: bucket.b_flag + 1,
-        };
+        const _temp = { ...bucket, b_flag: bucket.b_flag + 1 };
+        setSaveBucket(_temp);
+        return _temp;
+        //   b_flag: bucket.b_flag + 1,
       } else {
         return bucket;
       }
@@ -65,7 +85,10 @@ function BuckMain() {
       if (bucket.b_id === id) {
         //   b_id 가 id값과 같으면
         // bucket에 담긴 항목중에서 b_title 항목만 변경하여 통째로 return
-        return { ...bucket, b_title: title };
+        const _temp = { ...bucket, b_title: title };
+        setSaveBucket(_temp);
+        return _temp;
+        // { ...bucket, b_title: title };
       } else {
         return bucket;
       }
@@ -103,11 +126,15 @@ function BuckMain() {
   const bucket_complete = (id) => {
     const _bucketList = bucketList.map((bucket) => {
       if (bucket.b_id === id) {
-        return {
+        const _temp = {
           ...bucket,
           b_end_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
           b_end_check: !bucket.b_end_check,
         };
+        setSaveBucket(_temp);
+        return _temp;
+        //   b_end_date: moment().format("YYYY[-]MM[-]DD HH:mm:ss"),
+        //   b_end_check: !bucket.b_end_check,
       } else {
         return bucket;
       }
@@ -118,10 +145,13 @@ function BuckMain() {
   const bucket_cancel = (id) => {
     const _bucketList = bucketList.map((bucket) => {
       if (bucket.b_id === id) {
-        return {
+        const _temp = {
           ...bucket,
           b_cancel: !bucket.b_cancel,
         };
+        setSaveBucket(_temp);
+        return _temp;
+        //   b_cancel: !bucket.b_cancel,
       } else {
         return bucket;
       }

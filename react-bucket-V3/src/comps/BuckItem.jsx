@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState } from "react";
 
 const b_flag_text = ["일반", "중요", "매우중요", "긴급"];

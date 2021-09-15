@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+
+const BUCKET = require("../models/bucket");
 /*
 RESTFul
 클라이언트에서 요청을 할 때 할일을 프로토콜 method로 분리하기
@@ -30,24 +32,24 @@ client에서 요청을 할때 같은 URL을 통하여 method가 다르면 서로
 	- 도서정보에서 어떤 ID값이 1인 데이터 삭제하라 라고 요청을 할 수 있다
 		router.delete("/book/delete")
  */
-const retData = [
-  {
-    b_id: "0001",
-    b_title: "Hello",
-    b_start_date: "2021-09-15",
-    b_end_date: "",
-    b_end_check: false,
-    b_cancel: false,
-  },
-  {
-    b_id: "0002",
-    b_title: "Hi",
-    b_start_date: "2021-09-15",
-    b_end_date: "",
-    b_end_check: false,
-    b_cancel: false,
-  },
-];
+// const retData = [
+//   {
+//     b_id: "0001",
+//     b_title: "Hello",
+//     b_start_date: "2021-09-15",
+//     b_end_date: "",
+//     b_end_check: false,
+//     b_cancel: false,
+//   },
+//   {
+//     b_id: "0002",
+//     b_title: "Hi",
+//     b_start_date: "2021-09-15",
+//     b_end_date: "",
+//     b_end_check: false,
+//     b_cancel: false,
+//   },
+// ];
 
 router.get("/", (req, res) => {});
 
@@ -57,22 +59,46 @@ API Server에서는 fetch() 통하여 데이터를 전달받을 때도 사용한
 request의 body에 담겨서 전달되기 때문에
 req.body에서 데이터를 추출하면 된다
 */
-router.post("/bucket", (req, res) => {
+router.post("/bucket", async (req, res) => {
   const body = req.body;
-  console.log("data Insert");
+  const result = await BUCKET.create(body);
+  console.log("data Insert", result);
   console.log(body);
-  res.send("END");
+  await res.send({ result: "OK" });
 });
 
-router.put("/bucket", (req, res) => {
+/*
+3 Tier (3 layer App)
+react -> node -> atlas
+atlas -> node -> react
+
+findOne() 이 return하는 doc가 성능상 문제로 null 값이 되어 overwrite() 가 비정상 작동되므로
+사용하지 말자!
+*/
+router.put("/bucket", async (req, res) => {
   const body = req.body;
-  console.log("data Update");
+  await BUCKET.findOneAndUpdate({ b_id: body.b_id }, body);
+});
+
+router.put("/bucket/over", async (req, res) => {
+  const body = req.body;
+  // DB에서 b_id 값이 body.b_id와 같은 데이터 SELECT 하기
+  const doc = await BUCKET.findOne({ b_id: body.b_id });
+  console.log(doc);
+  // select 한 model 객체의 모든 요소 데이터를 body로 받은 데이터로 변경하라
+  // doc = { ...doc, b_id:body.b_id, title:body.b_title}
+  await doc.overwrite(body);
+  // 변경된 데이터 DB update 하라
+  await doc.save();
+  await console.log("data Update");
+  await console.table(body);
 });
 
 // localhost:3000/api/get
-router.get("/get", (req, res) => {
+router.get("/get", async (req, res) => {
+  const buckets = await BUCKET.find({});
   console.log("All Data List");
-  res.json(retData);
+  res.json(buckets);
 });
 
 // localhost:3000/api/1/get
@@ -100,7 +126,7 @@ Http Status Code
   res.send("END");
 });
 
-router.put("/udate", (req, res) => {});
+router.put("/update", (req, res) => {});
 
 router.delete("/cancel/:id", (req, res) => {
   const id = req.params.id;
