@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 15s linear;
+  }
+}
+
+.App-header {
+  background-image: url("./image/paws.png");
+  background-size: 70%;
+  background-position: center 80%;
+  background-repeat: no-repeat;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  0% {
+    transform: scale(70%);
+  }
+  50% {
+    transform: scale(80%);
+  }
+  100% {
+    transform: scale(70%);
+  }
+}
+
+/* addr_list */
+table.addr_list {
+  border-collapse: collapse;
+  border: 1px solid rgb(183, 218, 214);
+  width: 80%;
+  margin: 0 auto;
+}
+
+table.addr_list tr {
+  background-color: whitesmoke;
+  border-bottom: 1px solid rgb(183, 218, 214);
+  width: 100%;
+}
+
+table.addr_list th,
+table.addr_list td {
+  padding: 10px;
+}
+
+/* addr_input */
+div.addr_input {
+  margin: 10px;
+}
+div.addr_input input {
+  margin: 5px;
+  padding: 10px;
+}
+div.addr_input input:focus {
+  background-color: lavender;
+}
+div.addr_input button {
+  cursor: pointer;
+  padding: 12px;
+  background-color: khaki;
+  border-radius: 8px;
+  border: none;
+}

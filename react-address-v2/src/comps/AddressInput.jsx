@@ -10,6 +10,7 @@ function AddressInput({ args }) {
   };
 
   const onClickHandler = () => {
+    // const _address = { ...address}
     const _address = { ...address, u_id: addrList.length };
     setAddrList([...addrList, _address]);
     console.table(_address);

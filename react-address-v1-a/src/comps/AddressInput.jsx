@@ -16,7 +16,7 @@ function AddressInput({ address, setAddress }) {
     변수를 []로 묶어주고 값을 저장하면 변수에 담긴 문자열로 변수를 생성해주는 구조
     const [name] = "대한민국" name 변수가 아닌 name에 담긴 문자열이 변수가 되는 구조
 	
-	CPN : 
+	CPN : 표현식을 사용하여 객체의 key을 정의하는 문법이다
 	*/
     setAddress({ ...address, [name]: value });
   };
