@@ -1,0 +1,49 @@
+div.book_input,
+div.book_input div {
+  display: flex;
+}
+div.book_input {
+  width: 70%;
+  flex-direction: column;
+  margin: 10px auto;
+}
+div.book_input div {
+  flex: 1;
+}
+
+div.book_input div label,
+div.book_input div input {
+  margin: 10px;
+}
+
+div.book_input div label,
+div.book_input div input,
+div.book_input button {
+  padding: 10px;
+}
+
+div.book_input div label {
+  flex: 0.5;
+  font-weight: bold;
+}
+div.book_input div input {
+  flex: 1;
+  border: 1px solid cornflowerblue;
+  outline: none;
+}
+
+div.book_input div input:focus {
+  border-color: deepskyblue;
+  background-color: lightcyan;
+}
+
+div.book_input button {
+  cursor: pointer;
+  padding: 1rem 2.5rem;
+  margin: 10px auto;
+  border: none;
+  border-radius: 10px;
+  background-color: lightskyblue;
+  color: white;
+  text-shadow: 0px 0px 1px black;
+}
