@@ -19,6 +19,7 @@ const BookView = () => {
   };
   return (
     <div className="book_view" style={viewStyle}>
+      <label style={labelStyle}>Book id is "{book.b_id}"</label>
       <label style={labelStyle}>Book name is "{book.b_name}"</label>
       <label style={labelStyle}>Book genre is "{book.b_genre}"</label>
     </div>
