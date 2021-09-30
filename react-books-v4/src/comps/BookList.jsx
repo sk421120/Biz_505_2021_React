@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import BookContext from "../context/BookContext";
+import React from "react";
 import "../css/Input.css";
+import BookItem from "./BookItem";
 
 const list_title_names = [
   { id: 0, t_name: "ID" },
@@ -12,28 +12,23 @@ const list_title_view = list_title_names.map((title) => {
 });
 
 const BookList = () => {
-  const { bookList } = useContext(BookContext);
-  const viewList = bookList.map((book, index) => {
-    return (
-      <tr key={book.b_id}>
-        <td>{index + 1}</td>
-        <td>{book.b_name}</td>
-        <td>{book.b_genre}</td>
-      </tr>
-    );
-  });
+  //   const { bookList } = useContext(BookContext);
+
   return (
     <table className="book_list">
       <thead>
         <tr>
-          {bookList.length < 1 ? (
+          {/* {bookList.length < 1 ? (
             <th colSpan="3">등록된 도서가 없습니다</th>
           ) : (
             list_title_view
-          )}
+          )} */}
+          {list_title_view}
         </tr>
       </thead>
-      <tbody>{viewList}</tbody>
+      <tbody>
+        <BookItem />
+      </tbody>
     </table>
   );
 };

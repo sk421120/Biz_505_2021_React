@@ -14,7 +14,13 @@ const BookMain = () => {
   const [book, setBook] = useState({});
   const [bookList, setBookList] = useState([]);
 
-  const providerData = { book, setBook, bookList, setBookList };
+  // 상위 컴포넌트에서 이벤트를 생성하고 하위 컴포넌트로 전달할때는
+  // 반드시 e(event) 매개변수를 같이 포함하는 것이 좋다
+  const onClick = (e) => {
+    alert("Click!!");
+  };
+
+  const providerData = { book, setBook, bookList, setBookList, onClick };
   return (
     <>
       <BookContext.Provider value={providerData}>
