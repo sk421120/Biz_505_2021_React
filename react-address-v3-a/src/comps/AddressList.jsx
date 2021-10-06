@@ -21,7 +21,7 @@ function AddressList({ addrBook }) {
       <thead>
         <tr>
           {addrBook.length < 1 ? (
-            <th colSpan="4">등록된 연락처가 없습니다!</th>
+            <th colSpan="4">No Address NOW! Please Insert your Address</th>
           ) : (
             viewHead
           )}

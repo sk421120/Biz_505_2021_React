@@ -1,4 +1,4 @@
-import logo from "./image/animal.png";
+import logo from "./image/paw.png";
 import "./App.css";
 import AddressInput from "./comps/AddressInput";
 import AddressList from "./comps/AddressList";

@@ -1,0 +1,24 @@
+div.join_form {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+div.join_form input,
+div.join_form button {
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+div.join_form input {
+  border: 1px solid thistle;
+}
+
+div.join_form button {
+  padding: 20px;
+  background-color: darkorchid;
+  color: white;
+}
