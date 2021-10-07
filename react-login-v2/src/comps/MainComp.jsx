@@ -8,6 +8,7 @@ import Board from "./Board";
 import { useUserContext } from "../context/UserContextProvider";
 import Admin from "./Admin";
 import Logout from "./Logout";
+import AuthRoute from "./AuthRoute";
 
 export default function MainComp() {
   const { user, setUser } = useUserContext();
@@ -22,7 +23,7 @@ export default function MainComp() {
     user?.userid
       ? { id: 4, link: "/mypage", menu: "마이페이지" }
       : { id: 4, link: "/join", menu: "회원가입" },
-    { id: 5, link: "/admin", menu: "게시판관리" },
+    { id: 5, link: "/admin", menu: "회원정보보기" },
   ];
   return (
     <MainNav menu_list={menu_list}>
@@ -30,10 +31,14 @@ export default function MainComp() {
         <div>HOME</div>
       </Route>
       <Route path="/notice">
-        <Notice />
+        <AuthRoute>
+          <Notice />
+        </AuthRoute>
       </Route>
       <Route path="/board">
-        <Board />
+        <AuthRoute>
+          <Board />
+        </AuthRoute>
       </Route>
       <Route path="/login">
         <LoginForm />
@@ -45,7 +50,9 @@ export default function MainComp() {
         <Logout />
       </Route>
       <Route path="/admin">
-        <Admin />
+        <AuthRoute>
+          <Admin role={user.role} />
+        </AuthRoute>
       </Route>
     </MainNav>
   );

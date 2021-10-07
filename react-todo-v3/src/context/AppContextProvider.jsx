@@ -22,6 +22,7 @@ export const useTodoContext = () => useContext(AppContext);
 
 // Provider를 합성패턴으로 선언하여 필요한 곳에서 끌어올려 사용할 수 있도록 한다
 const AppContextProvider = ({ children }) => {
+  const [user, setUser] = useState({});
   const [todo, setTodo] = useState({
     // t_id: 0,
     // t_text: "TODO test",
@@ -117,6 +118,9 @@ const AppContextProvider = ({ children }) => {
     onChange,
     onClick,
     onKeyPress,
+
+    user,
+    setUser,
 
     completeToggle,
     onDeleteClick,

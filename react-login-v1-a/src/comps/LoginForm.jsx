@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { useUserContext } from "../context/UserContextProvider";
 import "../css/LoginForm.css";
+import Button from "../mycustom/Button";
 
 const LoginForm = () => {
   const { setUser } = useUserContext();
@@ -8,6 +10,8 @@ const LoginForm = () => {
     userid: "",
     password: "",
   });
+
+  const history = useHistory();
 
   const onChange = (e) =>
     setAccount({ ...account, [e.target.name]: e.target.value });
@@ -62,6 +66,8 @@ const LoginForm = () => {
       }
       alert("Login!");
       setUser(resultUser);
+      history.replace("/");
+      //   history.goBack();
     }
   };
   return (
@@ -77,9 +83,10 @@ const LoginForm = () => {
         type="password"
         onChange={onChange}
       />
-      <button className="btn_login" onClick={onBtnClick}>
+      {/* <button className="btn_login" onClick={onBtnClick}>LOGIN</button> */}
+      <Button onClick={onBtnClick} bgColor="darkorchid">
         LOGIN
-      </button>
+      </Button>
     </div>
   );
 };

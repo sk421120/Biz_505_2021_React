@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import "../css/JoinForm.css";
 import Button from "../mycustom/Button";
+import { fetchJoin } from "../modules/fetchModule.js";
+import { useHistory } from "react-router-dom";
 
 const JoinForm = () => {
   const password_check = useRef();
@@ -12,6 +14,8 @@ const JoinForm = () => {
     check: "",
     email: "",
   });
+
+  const history = useHistory();
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -43,18 +47,9 @@ const JoinForm = () => {
       email: joinUser.email,
     };
 
-    const response = await fetch("http://localhost:8000/users/join", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(joinData),
-    });
+    const result = fetchJoin(joinData);
 
-    if (response.ok) {
-      const json = await response.json();
-      alert(JSON.stringify(json));
-    }
+    history.push("/login");
   };
   return (
     <div className="join_form">
