@@ -1,7 +1,7 @@
 import React from "react";
 
 function AddressList({ addrBook }) {
-  const table_head = ["ID", "NAME", "ADDRESS", "TEL", "AGE"];
+  const table_head = ["ID", "이름", "주소", "연락처", "나이", "메모"];
   const viewHead = table_head.map((head) => {
     return <th>{head}</th>;
   });
@@ -13,6 +13,7 @@ function AddressList({ addrBook }) {
         <td>{addr.a_addr}</td>
         <td>{addr.a_tel}</td>
         <td>{addr.a_age}</td>
+        <td>{addr.a_memo}</td>
       </tr>
     );
   });
@@ -21,7 +22,7 @@ function AddressList({ addrBook }) {
       <thead>
         <tr>
           {addrBook.length < 1 ? (
-            <th colSpan="4">No Address NOW! Please Insert your Address</th>
+            <th colSpan="5">등록된 연락처가 없습니다!</th>
           ) : (
             viewHead
           )}

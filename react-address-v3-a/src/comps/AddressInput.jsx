@@ -11,11 +11,11 @@ function AddressInput({ stateGroup }) {
 
   const addrBookInsert = () => {
     if (address.a_name === "" || address.a_tel === "") {
-      alert("error");
+      alert("이름과 전화번호를 입력해주세요!");
       return;
     }
     setAddrBook([...addrBook, { ...address, a_id: UUID() }]);
-    setAddress({ ...address, a_name: "", a_addr: "", a_tel: "", a_age: "" });
+    setAddress({ ...address, a_name: "", a_addr: "", a_tel: "", a_age: "", a_memo:"" });
   };
 
   return (
@@ -25,28 +25,35 @@ function AddressInput({ stateGroup }) {
         name="a_name"
         type="text"
         onChange={onChangeHandler}
-        placeholder="NAME"
+        placeholder="이름"
       />
       <input
         value={address.a_addr}
         name="a_addr"
         type="text"
         onChange={onChangeHandler}
-        placeholder="ADDRESS"
+        placeholder="주소"
       />
       <input
         value={address.a_tel}
         name="a_tel"
-        type="text"
+        type="number"
         onChange={onChangeHandler}
-        placeholder="TEL"
+        placeholder="연락처"
       />
       <input
         value={address.a_age}
         name="a_age"
+        type="number"
+        onChange={onChangeHandler}
+        placeholder="나이"
+      />
+      <input
+        value={address.a_memo}
+        name="a_memo"
         type="text"
         onChange={onChangeHandler}
-        placeholder="AGE"
+        placeholder="메모"
       />
       <button onClick={addrBookInsert}>SAVE</button>
     </div>

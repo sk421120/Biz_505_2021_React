@@ -20,10 +20,10 @@
 
 .App-header {
   background-image: url("./image/paws.png");
-  background-size: 70%;
-  background-position: center 80%;
+  background-size: 80%;
+  background-position: center 60%;
   background-repeat: no-repeat;
-  min-height: 20vh;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
