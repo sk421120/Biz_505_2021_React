@@ -17,13 +17,19 @@
   color: white;
 }
 
+.login_wrapper {
+  padding: 1rem;
+  border-bottom: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+}
+
 .todo_login input,
 .btn_login {
   margin: 10px;
 }
 
 .todo_login input {
-  flex: 1;
   font-size: 1.25rem;
   outline: none;
   border: none;
@@ -35,11 +41,9 @@
 }
 
 .btn_login {
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  margin-left: 1rem;
+  padding: 1rem;
   outline: none;
   border: none;
-
   background-color: plum;
   border-radius: 3px;
   color: white;

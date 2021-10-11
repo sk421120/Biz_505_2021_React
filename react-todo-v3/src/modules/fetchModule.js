@@ -25,7 +25,21 @@ const fetchLogin = async (userid, password) => {
     }),
   });
   if (response?.ok) return await response.json();
-  else return [];
+  else {
+    alert("Login Fail")
+    return [];}
 };
 
-export { fetchUser, fetchLogin };
+const fetchLogout = async () => {
+  const response = await fetch("http://localhost:8000/users/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+    },
+    credentials: "include",
+  });
+  return response.json();
+};
+
+export { fetchUser, fetchLogin, fetchLogout };

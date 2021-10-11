@@ -36,7 +36,7 @@ export default function Login() {
   return (
     <div className="todo_login">
       <div className="login_title">Login</div>
-      <div className="form_wrapper">
+      <div className="login_wrapper">
         <input name="userid" onChange={onChange} placeholder="ID" />
         <input
           type="password"

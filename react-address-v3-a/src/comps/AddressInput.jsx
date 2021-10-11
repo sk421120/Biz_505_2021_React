@@ -39,7 +39,7 @@ function AddressInput({ stateGroup }) {
         name="a_tel"
         type="number"
         onChange={onChangeHandler}
-        placeholder="연락처"
+        placeholder="전화번호"
       />
       <input
         value={address.a_age}
@@ -55,7 +55,7 @@ function AddressInput({ stateGroup }) {
         onChange={onChangeHandler}
         placeholder="메모"
       />
-      <button onClick={addrBookInsert}>SAVE</button>
+      <button onClick={addrBookInsert}>저장</button>
     </div>
   );
 }

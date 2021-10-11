@@ -1,7 +1,7 @@
 import React from "react";
 
 function AddressList({ addrBook }) {
-  const table_head = ["ID", "이름", "주소", "연락처", "나이", "메모"];
+  const table_head = ["ID", "이름", "주소", "전화번호", "나이", "메모"];
   const viewHead = table_head.map((head) => {
     return <th>{head}</th>;
   });
@@ -22,7 +22,7 @@ function AddressList({ addrBook }) {
       <thead>
         <tr>
           {addrBook.length < 1 ? (
-            <th colSpan="5">등록된 연락처가 없습니다!</th>
+            <th colSpan="5 ">등록된 연락처가 없습니다!</th>
           ) : (
             viewHead
           )}
