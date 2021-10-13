@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { useUserContext } from "../context";
 import { fetchLogin } from "../modules/fetchModule.js";
 import "../css/TodoLogin.css";
+import { GoogleButton } from ".";
 
 export default function Login() {
   const [account, setAccount] = useState({
@@ -45,6 +46,7 @@ export default function Login() {
         <button className="btn_login" onClick={onBtnClick}>
           LOGIN
         </button>
+        <GoogleButton />
       </div>
     </div>
   );

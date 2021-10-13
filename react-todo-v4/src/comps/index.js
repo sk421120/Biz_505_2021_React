@@ -16,4 +16,6 @@ export { default as Logout } from "./Logout";
 export { default as LoginRoute } from "./LoginRoute";
 export { default as AuthRoute } from "./AuthRoute";
 
+export { default as GoogleButton } from "./Button/GoogleButton";
+
 // export { TodoMain, TodoList, TodoInput, TodoItem, Login };
